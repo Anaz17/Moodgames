@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Catch the Smiley</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fef9f3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      margin-top: 10px;
+    }
+
+    #score {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #555;
+    }
+
+    #game-area {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      background-color: #fff6eb;
+      border: 2px solid #ffd089;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    #smiley {
+      position: absolute;
+      font-size: 40px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>😄 Catch the Smiley!</h1>
+  <div id="score">Score: 0</div>
+  <div id="game-area">
+    <div id="smiley">😊</div>
+  </div>
+
+  <script>
+    const smiley = document.getElementById("smiley");
+    const scoreDisplay = document.getElementById("score");
+    let score = 0;
+
+    const gameArea = document.getElementById("game-area");
+    const areaWidth = gameArea.clientWidth;
+    const areaHeight = gameArea.clientHeight;
+
+    function moveSmiley() {
+      const x = Math.random() * (areaWidth - 50);
+      const y = Math.random() * (areaHeight - 50);
+      smiley.style.left = x + "px";
+      smiley.style.top = y + "px";
+    }
+
+    smiley.addEventListener("click", () => {
+      score++;
+      scoreDisplay.textContent = "Score: " + score;
+      moveSmiley();
+      smiley.style.transform = "scale(1.2)";
+      setTimeout(() => smiley.style.transform = "scale(1)", 100);
+    });
+
+    moveSmiley(); // Initial position
+  </script>
+
+</body>
+</html>
+
